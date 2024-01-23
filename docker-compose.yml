@@ -1,0 +1,19 @@
+version: "3"
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /Users/daniyarauezkhan/Desktop/Projects/watchtower-demo/config.json:/config.json
+    command: --interval 30
+    env_file:
+      - .env
+  
+  nodejs-server:
+    image: blinkker/simple-nodejs-server:dev
+    container_name: nodejs-server
+    restart: always
+    ports:
+      - 8080:8080
